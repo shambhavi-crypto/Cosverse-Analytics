@@ -20,9 +20,9 @@ h1{font-family:'Orbitron',sans-serif!important;color:#FF2D95!important;text-shad
 h2{font-family:'Orbitron',sans-serif!important;color:#00F0FF!important;text-shadow:0 0 15px #00F0FF44;font-size:1.4rem!important}
 h3{font-family:'Rajdhani',sans-serif!important;color:#B026FF!important;font-size:1.2rem!important}
 p,li,span,div{font-family:'Rajdhani',sans-serif!important}
-div[data-testid="stMetric"]{background:linear-gradient(135deg,#12122A,#1A1A3E)!important;border:1px solid #B026FF44!important;border-radius:12px!important;padding:16px!important;box-shadow:0 0 15px #B026FF22}
-div[data-testid="stMetric"] label{color:#00F0FF!important;font-family:'Rajdhani',sans-serif!important;font-weight:600!important}
-div[data-testid="stMetric"] div[data-testid="stMetricValue"]{color:#FF2D95!important;font-family:'Orbitron',sans-serif!important}
+div[data-testid="stMetric"]{background:linear-gradient(135deg,#12122A,#1A1A3E)!important;border:1px solid #B026FF44!important;border-radius:12px!important;padding:12px 10px!important;box-shadow:0 0 15px #B026FF22;overflow:hidden}
+div[data-testid="stMetric"] label{color:#00F0FF!important;font-family:'Rajdhani',sans-serif!important;font-weight:600!important;font-size:0.82rem!important}
+div[data-testid="stMetric"] div[data-testid="stMetricValue"]{color:#FF2D95!important;font-family:'Orbitron',sans-serif!important;font-size:1.15rem!important;white-space:nowrap!important;overflow:visible!important;text-overflow:unset!important}
 .stTabs [data-baseweb="tab-list"]{gap:4px;background:#0D0D25;border-radius:12px;padding:4px}
 .stTabs [data-baseweb="tab"]{background:#12122A!important;border-radius:8px!important;color:#8888AA!important;font-family:'Orbitron',sans-serif!important;font-size:.72rem!important;padding:8px 16px!important;border:1px solid transparent!important}
 .stTabs [aria-selected="true"]{background:linear-gradient(135deg,#FF2D9533,#B026FF33)!important;border:1px solid #FF2D95!important;color:#FF2D95!important;box-shadow:0 0 10px #FF2D9533}
