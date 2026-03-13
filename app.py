@@ -573,7 +573,10 @@ with t4:
     if len(freq)==0:
         st.warning("No itemsets found. Lower support.")
     else:
-        rules=association_rules(freq,metric="confidence",min_threshold=mcnf,num_itemsets=len(freq))
+        try:
+            rules=association_rules(freq,metric="confidence",min_threshold=mcnf,num_itemsets=len(freq))
+        except TypeError:
+            rules=association_rules(freq,metric="confidence",min_threshold=mcnf)
         if len(rules)==0:
             st.warning("No rules found. Lower confidence.")
         else:
