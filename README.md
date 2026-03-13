@@ -13,41 +13,39 @@
 |----------|-------|
 | Language | Python 3.10+ |
 | Dashboard | Streamlit |
-| Visualization | Plotly, Seaborn, Matplotlib |
-| ML & Analytics | Scikit-learn, MLxtend, SciPy, Statsmodels |
+| Visualization | Plotly |
+| ML & Analytics | Scikit-learn, MLxtend, SciPy |
 | Data Processing | Pandas, NumPy |
 
-## 📊 Dashboard Tabs
+## 📊 Dashboard Structure (5 Tabs)
 
-### Tab 1: Exploratory Data Analysis (EDA)
-- Age, Gender, City distribution
+### Tab 1: 🏠 Overview
+- KPI metrics (respondents, avg age, avg spend, NPS, app interest)
+- Age, Gender, City distributions
 - Fandom category popularity
-- Cosplay participation rate & spending analysis
-- Challenges faced & preferred features
-- Correlation heatmap
-- Income vs Spending & Participation vs App Interest relationships
-- Additional visualizations: NPS distribution, Discovery channels, Subscription interest
+- NPS & Discovery channel analysis
+- Correlation heatmap across all numeric features
 
-### Tab 2: Classification – Predict Platform Adoption
+### Tab 2: 🤖 Classification – Predict Platform Adoption
+- **EDA**: Event attendance, app usage intention by interest level, subscription interest, rental interest
 - **Target Variables**: `App_Usage_Intention` and `Interest_in_Rental`
 - **Models**: Random Forest, Logistic Regression, Gradient Boosting
-- **Outputs**: Confusion matrix, classification report, feature importance chart
+- **Outputs**: Confusion matrix, classification report, feature importance, model comparison
 
-### Tab 3: Clustering – Customer Personas
-- **Algorithm**: K-Means Clustering
-- **Analysis**: Elbow method, Silhouette scores, 3D cluster visualization
-- **Output**: Customer persona profiles (Hardcore Cosplayers, Casual Fans, Event Visitors)
+### Tab 3: 👥 Clustering – Customer Personas
+- **EDA**: Costume price distribution, spending by occupation, income vs spending, age-gender spending
+- **Algorithm**: K-Means Clustering with Elbow & Silhouette analysis
+- **Outputs**: 3D PCA visualization, cluster profiles table, radar chart, feature distributions
 
-### Tab 4: Association Rule Mining
-- **Algorithm**: Apriori
-- **Analysis**: Challenge → Feature relationships
-- **Metrics**: Support, Confidence, Lift
-- **Output**: Rule table and network visualization
+### Tab 4: 🔗 Association Rule Mining
+- **EDA**: Challenges faced, desired features, acquisition methods, rental duration preferences
+- **Algorithm**: Apriori with adjustable support/confidence
+- **Outputs**: Rules table, scatter plot (support vs confidence vs lift), challenge-to-feature heatmap
 
-### Tab 5: Regression – Demand Forecasting
+### Tab 5: 📈 Regression – Demand Forecasting
+- **EDA**: Spending distribution, rental willingness, experience vs spending, events vs costumes
 - **Models**: Linear Regression, Ridge Regression, Lasso Regression
-- **Targets**: Monthly cosplay spending, rental willingness, costume price
-- **Outputs**: R² scores, MAE comparison, actual vs predicted plots, residual analysis
+- **Outputs**: R²/MAE/RMSE comparison, actual vs predicted, residuals, feature coefficients, cross-validation
 
 ## 📂 Project Structure
 ```
