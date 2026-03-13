@@ -580,6 +580,15 @@ with t4:
         if len(rules)==0:
             st.warning("No rules found. Lower confidence.")
         else:
+            # Normalize column names (different mlxtend versions use different names)
+            rules.columns = [c.lower().replace(" ", "_") for c in rules.columns]
+            # Ensure 'lift' column exists
+            if "lift" not in rules.columns:
+                for col in rules.columns:
+                    if "lift" in col.lower():
+                        rules = rules.rename(columns={col: "lift"})
+                        break
+
             rules["ant"]=rules["antecedents"].apply(lambda x:", ".join(sorted(x)))
             rules["con"]=rules["consequents"].apply(lambda x:", ".join(sorted(x)))
             rk1,rk2,rk3=st.columns(3)
@@ -587,10 +596,10 @@ with t4:
             D()
 
             st.markdown("### Top Rules")
-            dr=rules[["ant","con","support","confidence","lift"]].copy()
-            dr.columns=["If","Then","Support","Confidence","Lift"]
-            dr=dr.sort_values("lift",ascending=False).head(20).reset_index(drop=True)
-            st.dataframe(dr.style.background_gradient(subset=["Lift"],cmap="RdPu").format({"Support":"{:.3f}","Confidence":"{:.3f}","Lift":"{:.3f}"}),use_container_width=True,height=400)
+            display_df=rules[["ant","con","support","confidence","lift"]].copy()
+            display_df.columns=["If","Then","Support","Confidence","Lift"]
+            display_df=display_df.sort_values("Lift",ascending=False).head(20).reset_index(drop=True)
+            st.dataframe(display_df.style.background_gradient(subset=["Lift"],cmap="RdPu").format({"Support":"{:.3f}","Confidence":"{:.3f}","Lift":"{:.3f}"}),use_container_width=True,height=400)
             I("<strong>Insight:</strong> Rules with <strong>lift > 1</strong> show genuine positive associations. These reveal which challenges <strong>directly drive feature demand</strong>.")
             D()
 
