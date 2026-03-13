@@ -135,25 +135,45 @@ NEON_COLORS = ["#FF2D95", "#00F0FF", "#B026FF", "#39FF14", "#FF6B35", "#FFD700",
 NEON_SEQUENTIAL = ["#0A0A1A", "#1A0A2E", "#3D1466", "#6B1D99", "#9B26CC", "#B026FF", "#D066FF", "#E8A0FF"]
 
 def dark_plotly_layout(fig, title="", height=450):
-    """Apply consistent dark theme to plotly figures."""
-    base_layout = dict(
-        title_text=title,
-        title_font=dict(family="Orbitron", size=16, color="#FF2D95"),
-        title_x=0.5,
-        paper_bgcolor="rgba(10,10,26,0)",
-        plot_bgcolor="rgba(18,18,42,0.8)",
-        font=dict(family="Rajdhani", color="#C8C8E8", size=13),
-        height=height,
-        margin=dict(l=40, r=40, t=60, b=40),
-        legend=dict(bgcolor="rgba(18,18,42,0.8)", bordercolor="#B026FF44", borderwidth=1, font=dict(size=12)),
-    )
-    fig.update_layout(**base_layout)
-    # Only apply axis styling if the figure has cartesian axes
+    """Apply consistent dark theme to plotly figures — safe for all chart types."""
+    # Apply each property individually with try/except to handle
+    # subplots, marginal plots, pie charts, heatmaps, 3D etc.
+    safe_props = {
+        "paper_bgcolor": "rgba(10,10,26,0)",
+        "font": dict(family="Rajdhani", color="#C8C8E8", size=13),
+        "height": height,
+        "margin": dict(l=40, r=40, t=60, b=40),
+        "legend": dict(bgcolor="rgba(18,18,42,0.8)", bordercolor="#B026FF44", borderwidth=1, font=dict(size=12)),
+    }
+    for key, val in safe_props.items():
+        try:
+            fig.update_layout(**{key: val})
+        except Exception:
+            pass
+
+    # Title — use the nested dict style for max compatibility
+    try:
+        fig.update_layout(title={"text": title, "x": 0.5,
+                                  "font": {"family": "Orbitron", "size": 16, "color": "#FF2D95"}})
+    except Exception:
+        try:
+            fig.update_layout(title_text=title)
+        except Exception:
+            pass
+
+    # plot_bgcolor — only works on non-subplot, non-pie, non-3D figures
+    try:
+        fig.update_layout(plot_bgcolor="rgba(18,18,42,0.8)")
+    except Exception:
+        pass
+
+    # Axis grid styling — safe for cartesian only
     try:
         fig.update_xaxes(gridcolor="#1E1E3F", zerolinecolor="#1E1E3F")
         fig.update_yaxes(gridcolor="#1E1E3F", zerolinecolor="#1E1E3F")
     except Exception:
         pass
+
     return fig
 
 def insight_box(text):
