@@ -19,39 +19,41 @@
 
 ## 📊 Dashboard Structure (5 Tabs)
 
-### Tab 1: 🏠 Overview
-- KPI metrics (respondents, avg age, avg spend, NPS, app interest)
-- Age, Gender, City distributions
-- Fandom category popularity
-- NPS & Discovery channel analysis
-- Correlation heatmap across all numeric features
+### Tab 1: 🏠 Overview (8 Visualizations)
+- KPI metrics, Age/Gender/City distributions, Fandom popularity
+- NPS & Discovery channels, Correlation heatmap
+- Revenue potential analysis by demographics
+- Influencer following impact on platform adoption
 
-### Tab 2: 🤖 Classification – Predict Platform Adoption
-- **EDA**: Event attendance, app usage intention by interest level, subscription interest, rental interest
-- **Target Variables**: `App_Usage_Intention` and `Interest_in_Rental`
+### Tab 2: 🤖 Classification – Predict Platform Adoption (12+ Charts)
+- **EDA**: Event attendance, app intent by interest level, subscription/rental interest
+- **Inference**: Adoption by occupation, event frequency, experience level, city type
 - **Models**: Random Forest, Logistic Regression, Gradient Boosting
 - **Outputs**: Confusion matrix, classification report, feature importance, model comparison
 
-### Tab 3: 👥 Clustering – Customer Personas
-- **EDA**: Costume price distribution, spending by occupation, income vs spending, age-gender spending
-- **Algorithm**: K-Means Clustering with Elbow & Silhouette analysis
-- **Outputs**: 3D PCA visualization, cluster profiles table, radar chart, feature distributions
+### Tab 3: 👥 Clustering – Customer Personas (14+ Charts)
+- **EDA**: Costume price, spending by occupation, income vs spending, age-gender spend
+- **Inference**: Spending-to-income ratio, costumes by interest, acquisition method spending
+- **Models**: K-Means with Elbow & Silhouette analysis
+- **Outputs**: 3D PCA, cluster profiles, radar chart, composition analysis
 
-### Tab 4: 🔗 Association Rule Mining
-- **EDA**: Challenges faced, desired features, acquisition methods, rental duration preferences
-- **Algorithm**: Apriori with adjustable support/confidence
-- **Outputs**: Rules table, scatter plot (support vs confidence vs lift), challenge-to-feature heatmap
+### Tab 4: 🔗 Association Rule Mining (10+ Charts)
+- **EDA**: Challenges, features, acquisition methods, rental duration
+- **Inference**: Challenge rate by occupation, feature demand by gender, prep time vs rental
+- **Models**: Apriori with adjustable support/confidence
+- **Outputs**: Rules table, scatter plot, lift distribution, challenge-feature heatmap
 
-### Tab 5: 📈 Regression – Demand Forecasting
-- **EDA**: Spending distribution, rental willingness, experience vs spending, events vs costumes
-- **Models**: Linear Regression, Ridge Regression, Lasso Regression
-- **Outputs**: R²/MAE/RMSE comparison, actual vs predicted, residuals, feature coefficients, cross-validation
+### Tab 5: 📈 Regression – Demand Forecasting (12+ Charts)
+- **EDA**: Spending distribution, rental willingness, experience vs spending
+- **Inference**: Revenue score heatmap, likelihood distribution, income bracket spending
+- **Models**: Linear, Ridge, Lasso Regression
+- **Outputs**: R²/MAE/RMSE comparison, actual vs predicted, residuals, coefficients, CV stability
 
 ## 📂 Project Structure
 ```
 CosVerse-Analytics/
-├── app.py                              # Main Streamlit application
-├── cosplay_survey_uae_synthetic.csv    # Survey dataset (n=2000)
+├── app.py                              # Main Streamlit application (1100+ lines)
+├── cosplay_survey_uae_synthetic.csv    # Survey dataset (n=2000, 39 features)
 ├── requirements.txt                    # Python dependencies
 └── README.md                           # Project documentation
 ```
@@ -64,14 +66,9 @@ CosVerse-Analytics/
 
 ### Installation
 ```bash
-# Clone the repository
 git clone https://github.com/<your-username>/CosVerse-Analytics.git
 cd CosVerse-Analytics
-
-# Install dependencies
 pip install -r requirements.txt
-
-# Run the dashboard
 streamlit run app.py
 ```
 
@@ -82,11 +79,11 @@ streamlit run app.py
 4. Set `app.py` as the main file
 5. Deploy!
 
-## 📈 Dataset Description
-The dataset contains **2,000 survey responses** from UAE-based cosplay enthusiasts and fans with **39 features** including demographics, fandom preferences, spending habits, challenges, and platform interest indicators.
+## 📈 Dataset
+**2,000 survey responses** from UAE cosplay enthusiasts with **39 features**: demographics, fandom preferences, spending habits, challenges, and platform interest indicators.
 
 ## 👥 Author
 CosVerse Analytics Team
 
 ## 📄 License
-This project is for academic and educational purposes.
+Academic and educational purposes.
