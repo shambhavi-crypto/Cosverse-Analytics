@@ -136,17 +136,24 @@ NEON_SEQUENTIAL = ["#0A0A1A", "#1A0A2E", "#3D1466", "#6B1D99", "#9B26CC", "#B026
 
 def dark_plotly_layout(fig, title="", height=450):
     """Apply consistent dark theme to plotly figures."""
-    fig.update_layout(
-        title=dict(text=title, font=dict(family="Orbitron", size=16, color="#FF2D95"), x=0.5),
+    base_layout = dict(
+        title_text=title,
+        title_font=dict(family="Orbitron", size=16, color="#FF2D95"),
+        title_x=0.5,
         paper_bgcolor="rgba(10,10,26,0)",
         plot_bgcolor="rgba(18,18,42,0.8)",
         font=dict(family="Rajdhani", color="#C8C8E8", size=13),
         height=height,
         margin=dict(l=40, r=40, t=60, b=40),
         legend=dict(bgcolor="rgba(18,18,42,0.8)", bordercolor="#B026FF44", borderwidth=1, font=dict(size=12)),
-        xaxis=dict(gridcolor="#1E1E3F", zerolinecolor="#1E1E3F"),
-        yaxis=dict(gridcolor="#1E1E3F", zerolinecolor="#1E1E3F"),
     )
+    fig.update_layout(**base_layout)
+    # Only apply axis styling if the figure has cartesian axes
+    try:
+        fig.update_xaxes(gridcolor="#1E1E3F", zerolinecolor="#1E1E3F")
+        fig.update_yaxes(gridcolor="#1E1E3F", zerolinecolor="#1E1E3F")
+    except Exception:
+        pass
     return fig
 
 def insight_box(text):
@@ -795,7 +802,7 @@ elif tab_selection == "🔗 Association Rules":
         st.warning("No frequent itemsets found at this support level. Try lowering the minimum support.")
     else:
         min_conf = st.slider("Minimum Confidence", 0.1, 1.0, 0.3, 0.05)
-        rules = association_rules(frequent, metric="confidence", min_threshold=min_conf)
+        rules = association_rules(frequent, metric="confidence", min_threshold=min_conf, num_itemsets=len(frequent))
 
         if len(rules) == 0:
             st.warning("No rules found at this confidence level. Try lowering the threshold.")
